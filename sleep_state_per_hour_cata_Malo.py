@@ -181,7 +181,7 @@ def plot_sleep_state_accross_time(group):
     plt.show()
 
 def wake_time_before_cata():
-    path = precompute_dir + '/Ox1r_Ox2r_d/d/sleep_by_epoch.nc'
+    path = precompute_dir + '/Ox1r_Ox2r_dd/sleep_by_epoch.nc'
     ds = xr.open_dataset(path)
 
     # Get cata event, keep 1st position
@@ -320,7 +320,7 @@ def wake_time_before_cata():
 
 def plot_cata_number_accross_time():
     # data_dir = 'C:/Users/maxime.juventin/Desktop/scripts_ML/data/'
-    path = precompute_dir + '/Ox1r_Ox2r_d/d/sleep_by_epoch.nc'
+    path = precompute_dir + '/Ox1r_Ox2r_dd/sleep_by_epoch.nc'
     ds = xr.open_dataset(path)
 
     # print(ds)
@@ -399,19 +399,19 @@ def plot_cata_number_accross_time():
                 cata_duration_by_hour.at[h, mouse]= cata_duration
                 wake_pre_cata_duration_by_hour.at[h, mouse]= wake_pre_cata_duration
 
-    dirname = excel_dir + '/Ox1r_Ox2r_d/d/cataplexy_count/'
+    dirname = excel_dir + '/Ox1r_Ox2r_dd/cataplexy_count/'
     if not os.path.exists(dirname):
         os.makedirs(dirname)
     filename =dirname+'by_hour_cataplexy_count.xlsx'
     cata_count_by_hour.to_excel(filename)
 
-    dirname = excel_dir + '/Ox1r_Ox2r_d/d/cataplexy_duration/'
+    dirname = excel_dir + '/Ox1r_Ox2r_dd/cataplexy_duration/'
     if not os.path.exists(dirname):
         os.makedirs(dirname)
     filename =dirname+'by_hour_cataplexy_duration.xlsx'
     cata_duration_by_hour.to_excel(filename)
 
-    dirname = excel_dir + '/Ox1r_Ox2r_d/d/wake_pre_cataplexy_duration/'
+    dirname = excel_dir + '/Ox1r_Ox2r_dd/wake_pre_cataplexy_duration/'
     if not os.path.exists(dirname):
         os.makedirs(dirname)
     filename =dirname+'by_hour_cataplexy_duration.xlsx'
@@ -508,15 +508,15 @@ def plot_cata_number_accross_time():
                 cata_duration_by_hour.at[h, mouse]= cata_duration
                 wake_pre_cata_duration_by_hour.at[h, mouse]= wake_pre_cata_duration
 
-    dirname = excel_dir + '/Ox1r_Ox2r_d/d/cataplexy_count/'
+    dirname = excel_dir + '/Ox1r_Ox2r_dd/cataplexy_count/'
     filename =dirname+'by_halfday_cataplexy_count.xlsx'
     cata_count_by_hour.to_excel(filename)
 
-    dirname = excel_dir + '/Ox1r_Ox2r_d/d/cataplexy_duration/'
+    dirname = excel_dir + '/Ox1r_Ox2r_dd/cataplexy_duration/'
     filename =dirname+'by_halfday_cataplexy_duration.xlsx'
     cata_duration_by_hour.to_excel(filename)
 
-    dirname = excel_dir + '/Ox1r_Ox2r_d/d/wake_pre_cataplexy_duration/'
+    dirname = excel_dir + '/Ox1r_Ox2r_dd/wake_pre_cataplexy_duration/'
     if not os.path.exists(dirname):
         os.makedirs(dirname)
     filename =dirname+'by_halday_cataplexy_duration.xlsx'
@@ -524,7 +524,7 @@ def plot_cata_number_accross_time():
 
 def plot_tdw_before_cata(spectrum_method = 'welch'):
     # data_dir = 'C:/Users/maxime.juventin/Desktop/scripts_ML/data/'
-    path = precompute_dir + '/Ox1r_Ox2r_d/d/sleep_by_epoch.nc'
+    path = precompute_dir + '/Ox1r_Ox2r_dd/sleep_by_epoch.nc'
     ds = xr.open_dataset(path)
 
     # print(ds)
@@ -664,7 +664,7 @@ def plot_tdw_before_cata(spectrum_method = 'welch'):
                 # wake_pre_cata_duration_by_hour.at[h, mouse]= wake_pre_cata_duration
 
         # plt.show()
-    dirname = excel_dir + '/Ox1r_Ox2r_d/d/tdw_before_cata/'
+    dirname = excel_dir + '/Ox1r_Ox2r_dd/tdw_before_cata/'
     if not os.path.exists(dirname):
         os.makedirs(dirname)
     filename =dirname+'tdw_percent.xlsx'
