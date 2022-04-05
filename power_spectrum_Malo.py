@@ -648,7 +648,7 @@ def plot_spectrum_cataplexy_day_night(spectrum_method = 'somno', period = 'light
     for i in range(4):
         ax[i].set_ylabel(conditions[i])
 
-    dirname = excel_dir + '/Ataxin/power_spectrum_baseline_auc_{}_agg_power_{}/'.format(auc, agg_power)
+    dirname = excel_dir + '/Ox1r_Ox2r_dd/power_spectrum_baseline_auc_{}_agg_power_{}/'.format(auc, agg_power)
 
     if not os.path.exists(dirname):
         os.makedirs(dirname)
@@ -681,16 +681,18 @@ def theta_peak_frequency(spectrum_method = 'welch', state = 'r'):
 
     if state == 'a':
         groups = ['Ox1r_Ox2r_dd']
+    else :
+        from configuration import groups
     for period in periods :
         for condition in conditions:
             for group in groups:
                 mice = get_mice(group)
-                df = pd.DataFrame(np.zeros((len(groups[group]),1)), index = groups[group], columns = ['TPF'])
+                df = pd.DataFrame(np.zeros((len(mice),1)), index = mice, columns = ['TPF'])
                 for mouse in mice:
                     ds = xr.open_dataset(precompute_dir + '/spectrums/spectrum_scoring_{}.nc'.format(mouse))
                     freqs = ds.coords['freqs_{}'.format(spectrum_method)].values
                     fake_freqs = np.arange(freqs.size)*.25
-                    _, relative_spectrums = get_relative_spectrums_one_mouse_one_condition_day_night(mouse, condition, spectrum_method, period )
+                    _, relative_spectrums = get_relative_spectrums_one_mouse_one_condition_day_night_Sha(mouse, condition, spectrum_method, period )
                     spec = relative_spectrums[state]
                     if spec[np.isnan(spec)==0].size >0 :
                         TPF = fake_freqs[spec == np.max(spec)]
@@ -708,38 +710,9 @@ def theta_peak_frequency(spectrum_method = 'welch', state = 'r'):
 if __name__ == '__main__':
 
 
-    group = 'Ataxin'
+    group = 'Ox1r_Ox2r_dd'
     # rec = 'b1'
 
-
-    # mouse = 'B07365'
-    # ploplot(mouse, 'welch', 'baseline')
-    # group = 'Control'
-    # rec = 'b2'
-    # compute_all()
-    # store_scoring_and_spectrums_one_mouse_one_session_day_(group, mouse)
-    # get_clear_spectral_score_one_mouse_one_condition(mouse, 'bl1', 'r')
-    # get_relative_spectrums_one_mouse_one_condition(mouse, 'bl1')
-
-    # plot_spectrum_compare_global(spectrum_method = 'somno')
-    # plot_spectrum_compare_day_night(spectrum_method = 'somno', period = 'dark')
-    # plot_spectrum_compare_day_night(spectrum_method = 'somno', period = 'dark')
-    # plot_spectrum_by_mouse('welch', normalisation = 'baseline')
-    # exit()
-    # plot_spectrum_compare_day_night_Sha(spectrum_method = 'welch', period = 'light', auc = False, agg_power = 'mean')
-    # plot_spectrum_compare_day_night_Sha(spectrum_method = 'welch', period = 'dark', auc = False, agg_power = 'mean')
-    # plt.show()
-    # plot_spectrum_compare_day_night_Sha(spectrum_method = 'welch', period = 'dark')
-    #
-    # plot_spectrum_compare_day_night(spectrum_method = 'welch', period = 'light')
-    # # plt.show()
-    # plot_spectrum_compare_day_night(spectrum_method = 'welch', period = 'dark')
-    # plt.show()
-    # plot_spectrum_cataplexy_day_night(spectrum_method = 'welch',period ='light')
-    # plot_spectrum_cataplexy_day_night(spectrum_method = 'welch',period ='dark')
-    # get_clear_spectral_score_one_mouse_one_condition_day_night(mouse, 'bl1', 'r', 'dark')
-    # get_relative_spectrums_one_mouse_one_condition_day_night(mouse = mouse, condition ='bl1', spectrum_method = 'somno', period = 'dark')
-    # plt.show()
 
 
 
